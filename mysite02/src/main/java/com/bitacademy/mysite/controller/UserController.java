@@ -107,6 +107,7 @@ public class UserController extends HttpServlet {
 			
 			UserVo vo = new UserVo();
 			vo.setName(name);
+			vo.setEmail(email);
 			vo.setPassword(password);
 			vo.setGender(gender);
 			vo.setNo(authUser.getNo());
@@ -114,8 +115,8 @@ public class UserController extends HttpServlet {
 			new UserDao().update(vo);
 			authUser.setName(name);
 			
-			//request.setAttribute("userVo", userVo);
-			request.getRequestDispatcher("WEB-INF/views/user/updateform.jsp").forward(request, response);
+			request.setAttribute("userVo", vo);
+			response.sendRedirect(request.getContextPath()+"/user?a=updateform");
 		}else {
 			response.sendRedirect(request.getContextPath() + "/main");
 		}
