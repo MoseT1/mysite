@@ -1,6 +1,7 @@
 package com.bitacademy.mysite.dao;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bitacademy.guestbook.vo.GuestbookVo;
+import com.bitacademy.mysite.vo.GuestbookVo;
 
 public class GuestbookDao {
 
@@ -22,7 +23,7 @@ public class GuestbookDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			String url = "jdbc:mariadb://192.168.100.42:3306/webdb?charset=utf8"; // utf8이라고 적어야함
+			String url = "jdbc:mariadb://192.168.100.55:3306/webdb?charset=utf8"; // utf8이라고 적어야함
 
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 
@@ -80,7 +81,7 @@ public class GuestbookDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			String url = "jdbc:mariadb://192.168.100.42:3306/webdb?charset=utf8"; // utf8이라고 적어야함
+			String url = "jdbc:mariadb://192.168.100.55:3306/webdb?charset=utf8"; // utf8이라고 적어야함
 
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 
@@ -126,7 +127,7 @@ public class GuestbookDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			String url = "jdbc:mariadb://192.168.100.42:3306/webdb?charset=utf8"; // utf8이라고 적어야함
+			String url = "jdbc:mariadb://192.168.100.55:3306/webdb?charset=utf8"; // utf8이라고 적어야함
 
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 
