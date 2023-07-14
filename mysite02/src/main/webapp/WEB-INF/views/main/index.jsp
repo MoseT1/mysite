@@ -5,7 +5,7 @@
 <head>
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link href="<%=request.getContextPath()%>/assets/css/main.css"
+<link href="${pageContext.request.contextPath}/assets/css/main.css"
 	rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -15,7 +15,7 @@
 			<div id="content">
 				<div id="site-introduction">
 					<img id="profile"
-						src="<%=request.getContextPath()%>/assets/images/IMG_0006.JPG"
+						src="${pageContext.request.contextPath}/assets/images/IMG_0006.JPG"
 						style="width: 150px">
 					<h2>안녕하세요. 김모세의 mysite에 오신 것을 환영합니다.</h2>
 					<p>
