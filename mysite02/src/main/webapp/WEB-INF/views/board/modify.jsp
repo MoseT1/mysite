@@ -29,7 +29,7 @@
 						<tr>
 							<td class="label">내용</td>
 							<td>
-								<textarea id="content" name="content">${boardVo.contents }</textarea>
+								<textarea id="contents" name="contents">${boardVo.contents }</textarea>
 							</td>
 						</tr>
 					</table>
