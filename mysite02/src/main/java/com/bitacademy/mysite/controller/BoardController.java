@@ -1,4 +1,4 @@
-package com.bitacademy.mysite.controller;
+ package com.bitacademy.mysite.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -15,7 +15,9 @@ public class BoardController extends HttpServlet {
 		
 		String actionName = request.getParameter("a");
 		if("writeform".equals(actionName)) {
-			
+			request
+				.getRequestDispatcher("WEB-INF/views/board/write.jsp")
+				.forward(request, response);
 		}else if ("write".equals(actionName)) {
 			
 		}else {
