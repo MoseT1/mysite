@@ -23,7 +23,7 @@ public class GuestbookDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			String url = "jdbc:mariadb://192.168.100.55:3306/webdb?charset=utf8"; // utf8이라고 적어야함
+			String url = "jdbc:mariadb://192.168.100.56:3306/webdb?charset=utf8"; // utf8이라고 적어야함
 
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 
@@ -81,7 +81,7 @@ public class GuestbookDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			String url = "jdbc:mariadb://192.168.100.55:3306/webdb?charset=utf8"; // utf8이라고 적어야함
+			String url = "jdbc:mariadb://192.168.100.56:3306/webdb?charset=utf8"; // utf8이라고 적어야함
 
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 
@@ -127,7 +127,7 @@ public class GuestbookDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			String url = "jdbc:mariadb://192.168.100.55:3306/webdb?charset=utf8"; // utf8이라고 적어야함
+			String url = "jdbc:mariadb://192.168.100.56:3306/webdb?charset=utf8"; // utf8이라고 적어야함
 
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 

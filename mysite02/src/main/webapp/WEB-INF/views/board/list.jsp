@@ -26,7 +26,30 @@
 						<th>조회수</th>
 						<th>작성일</th>
 						<th>&nbsp;</th>
-					</tr>				
+					</tr>
+					<c:set var="count" value="${fn:length(list) }" />
+					<c:forEach items="${list }" var="vo" varStatus="status">
+						<li>
+							<table>
+								<tr>
+									<td>[${count - status.index }]</td>
+									<td style="text-align:left; padding-left:${vo.depth*20}px"><a href="${pageContext.request.contextPath }/board?a=view&no=${vo.no}">${vo.title }</a></td>
+									<td>${vo.userName }</td>
+									<td>${vo.hit }</td>
+									<td>${vo.regDate }</td>
+									<c:if test="${authUser.no == vo.userNo }"></c:if>
+									<td><a href="${pageContext.request.contextPath }/board?a=delete&no=${vo.no}">삭제</a></td>
+								</tr>
+								<tr>
+									<td colspan=4>
+										${fn:replace(vo.contents, newline, "<br>") }
+									</td>
+								</tr>
+							</table>
+							<br>
+						</li>				
+					</c:forEach>
+									
 					<tr>
 						<td>3</td>
 						<td style="text-align:left; padding-left:${vo.depth*20}px"><a href="">세 번째 글입니다.</a></td>
