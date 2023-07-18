@@ -21,12 +21,7 @@ public class GuestbookDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-
-			String url = "jdbc:mariadb://192.168.100.56:3306/webdb?charset=utf8"; // utf8이라고 적어야함
-
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
-
+			conn = getConnection();
 			String sql = "select * from guestbook";
 
 			pstmt = conn.prepareStatement(sql);
@@ -49,8 +44,6 @@ public class GuestbookDao {
 				result.add(vo);
 			}
 
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패:" + e);
 		} catch (SQLException e) {
 			System.out.println("Error:" + e);
 		} finally {
@@ -79,11 +72,7 @@ public class GuestbookDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-
-			String url = "jdbc:mariadb://192.168.100.56:3306/webdb?charset=utf8"; // utf8이라고 적어야함
-
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			conn = getConnection();
 
 			String sql = "insert into guestbook values(null, ?, ?, ?, curdate())";
 
@@ -96,8 +85,6 @@ public class GuestbookDao {
 
 			rs = pstmt.executeQuery();
 
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패:" + e);
 		} catch (SQLException e) {
 			System.out.println("Error:" + e);
 		} finally {
@@ -125,12 +112,7 @@ public class GuestbookDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-
-			String url = "jdbc:mariadb://192.168.100.56:3306/webdb?charset=utf8"; // utf8이라고 적어야함
-
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
-
+			conn = getConnection();
 			String sql = "delete from guestbook where no=? and password=?";
 
 			pstmt = conn.prepareStatement(sql);
@@ -140,8 +122,6 @@ public class GuestbookDao {
 
 			rs = pstmt.executeQuery();
 
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패:" + e);
 		} catch (SQLException e) {
 			System.out.println("Error:" + e);
 		} finally {
@@ -161,5 +141,20 @@ public class GuestbookDao {
 			}
 		}
 
+	}
+	
+	private Connection getConnection() throws SQLException {
+		Connection conn = null;
+
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			String url = "jdbc:mariadb://192.168.100.56:3306/webdb?charset=utf8";
+			conn = DriverManager.getConnection(url, "webdb", "webdb");
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패:" + e);
+		}
+
+		return conn;
 	}
 }

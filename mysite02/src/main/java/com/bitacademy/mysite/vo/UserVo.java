@@ -1,6 +1,11 @@
 package com.bitacademy.mysite.vo;
 
 public class UserVo {
+	@Override
+	public String toString() {
+		return "UserVo [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", gender="
+				+ gender + ", joinDate=" + joinDate + "]";
+	}
 	private Long no;
 	private String name;
 	private String email;

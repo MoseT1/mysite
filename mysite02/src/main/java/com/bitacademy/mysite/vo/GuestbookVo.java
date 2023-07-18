@@ -8,11 +8,7 @@ public class GuestbookVo {
 	private String reg_date;
 	
 	
-	@Override
-	public String toString() {
-		return "GuestbookVo [no=" + no + ", name=" + name + ", password=" + password + ", message=" + message
-				+ ", reg_date=" + reg_date + "]";
-	}
+	
 	public Long getNo() {
 		return no;
 	}
@@ -42,5 +38,10 @@ public class GuestbookVo {
 	}
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
+	}
+	@Override
+	public String toString() {
+		return "GuestbookVo [no=" + no + ", name=" + name + ", password=" + password + ", message=" + message
+				+ ", reg_date=" + reg_date + "]";
 	}
 }

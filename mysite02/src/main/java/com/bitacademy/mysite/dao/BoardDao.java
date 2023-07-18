@@ -213,7 +213,7 @@ public class BoardDao {
 			
 			
 			String sql = "insert into board  "
-					+ "values (null, ?, ?, 0, now() , ? , (select max(a.o_no) from board a where g_no=?), ?, ?)";
+					+ "values (null, ?, ?, 0, now() , ? , (select max(a.o_no) from board a where g_no=?)+1, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContents());
