@@ -8,13 +8,14 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
+import com.bitacademy.mysite.exception.UserRepositoryException;
 import com.bitacademy.mysite.vo.UserVo;
 
 
 @Repository
 public class UserRepository {
 
-	public Boolean insert(UserVo vo) {
+	public Boolean insert(UserVo vo)  throws UserRepositoryException{
 		boolean result = false;
 
 		Connection conn = null;
@@ -36,7 +37,7 @@ public class UserRepository {
 			result = count == 1;
 
 		} catch (SQLException e) {
-			System.out.println("Error:" + e);
+			throw new UserRepositoryException(e.toString());
 		} finally {
 			try {
 				if (pstmt != null) {
@@ -54,12 +55,12 @@ public class UserRepository {
 		return result;
 	}
 
-	public UserVo findByEmailAndPassword(UserVo vo) {		//오버로딩
+	public UserVo findByEmailAndPassword(UserVo vo) throws UserRepositoryException {		//오버로딩
 		return findByEmailAndPassword(vo.getEmail(), vo.getPassword());
 	}
 	
 	
-	public UserVo findByEmailAndPassword(String email, String password) {
+	public UserVo findByEmailAndPassword(String email, String password) throws UserRepositoryException {
 		UserVo result = null;
 
 		Connection conn = null;
@@ -86,7 +87,7 @@ public class UserRepository {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("Error:" + e);
+			throw new UserRepositoryException(e.toString());
 		} finally {
 			try {
 				if (rs != null) {
@@ -108,7 +109,7 @@ public class UserRepository {
 		return result;
 	}
 
-	public UserVo findByNo(Long no) {
+	public UserVo findByNo(Long no)  throws UserRepositoryException{
 		UserVo result = null;
 
 		Connection conn = null;
@@ -139,7 +140,7 @@ public class UserRepository {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("Error:" + e);
+			throw new UserRepositoryException(e.toString());
 		} finally {
 			try {
 				if (rs != null) {
@@ -161,7 +162,7 @@ public class UserRepository {
 		return result;
 	}
 	
-	public void update(UserVo vo) {
+	public void update(UserVo vo)  throws UserRepositoryException {
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -191,7 +192,7 @@ public class UserRepository {
 			
 
 		} catch (SQLException e) {
-			System.out.println("Error:" + e);
+			throw new UserRepositoryException(e.toString());
 		} finally {
 			try {
 				if (rs != null) {
