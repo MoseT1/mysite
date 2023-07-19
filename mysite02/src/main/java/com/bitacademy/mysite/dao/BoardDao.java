@@ -149,7 +149,7 @@ public class BoardDao {
 			
 			conn = getConnection();
 			String sql = "select a.no, title, contents, hit, a.reg_date, g_no, o_no, depth, b.no, b.name"
-						+ " from board a, user b where a.user_no = b.no";
+						+ " from board a, user b where a.user_no = b.no order by g_no, depth asc, o_no desc";
 
 			pstmt = conn.prepareStatement(sql);
 
