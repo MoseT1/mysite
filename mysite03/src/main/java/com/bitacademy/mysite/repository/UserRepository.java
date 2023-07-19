@@ -54,6 +54,11 @@ public class UserRepository {
 		return result;
 	}
 
+	public UserVo findByEmailAndPassword(UserVo vo) {		//오버로딩
+		return findByEmailAndPassword(vo.getEmail(), vo.getPassword());
+	}
+	
+	
 	public UserVo findByEmailAndPassword(String email, String password) {
 		UserVo result = null;
 
