@@ -104,6 +104,7 @@ public class BoardController extends HttpServlet {
 			String title = request.getParameter("title");
 			String contents = request.getParameter("contents");
 			String gNo = request.getParameter("gNo");
+			String oNo = request.getParameter("oNo");
 			String depth = request.getParameter("depth");
 			String userNo = request.getParameter("userNo");
 			
@@ -111,6 +112,7 @@ public class BoardController extends HttpServlet {
 			vo.setTitle(title);
 			vo.setContents(contents);
 			vo.setgNo(Long.parseLong(gNo));
+			vo.setoNo(Long.parseLong(oNo)+1);
 			vo.setDepth(Long.parseLong(depth)+1);
 			vo.setUserNo(Long.parseLong(userNo));
 			

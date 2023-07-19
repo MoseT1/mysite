@@ -149,7 +149,7 @@ public class BoardDao {
 			
 			conn = getConnection();
 			String sql = "select a.no, title, contents, hit, a.reg_date, g_no, o_no, depth, b.no, b.name"
-						+ " from board a, user b where a.user_no = b.no order by g_no, depth asc, o_no desc";
+						+ " from board a, user b where a.user_no = b.no order by g_no, o_no ";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -213,16 +213,27 @@ public class BoardDao {
 			
 			
 			String sql = "insert into board  "
-					+ "values (null, ?, ?, 0, now() , ? , (select max(a.o_no) from board a where g_no=?)+1, ?, ?)";
+					+ "values (null, ?, ?, 0, now() , ? , ?, ?, ?) ";
+					
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContents());
 			pstmt.setLong(3, vo.getgNo());
-			pstmt.setLong(4, vo.getgNo());
+			pstmt.setLong(4, vo.getoNo());
 			pstmt.setLong(5, vo.getDepth());
 			pstmt.setLong(6, vo.getUserNo());
-			
 			pstmt.executeUpdate();
+			
+			
+			sql = "UPDATE board AS b1 "
+					+ "INNER JOIN (SELECT g_no, MAX(no) AS max_no FROM board WHERE g_no = ? AND o_no >= ?) AS b2 "
+					+ "ON b1.g_no = b2.g_no AND b1.no < b2.max_no "
+					+ "SET b1.o_no = b1.o_no + 1";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, vo.getgNo());
+			pstmt.setLong(2, vo.getoNo());
+			pstmt.executeUpdate();
+			
 		}catch (SQLException e) {
 			System.out.println("Error:" + e);
 		} finally {
