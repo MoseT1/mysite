@@ -5,10 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bitacademy.mysite.security.Auth;
 import com.bitacademy.mysite.service.UserService;
 import com.bitacademy.mysite.vo.UserVo;
 
@@ -57,6 +57,7 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	@Auth
 	@RequestMapping(value = "/logout")
 	public String logout(HttpSession session) { // 여기까지 배운 지식으로는 기술 침투할수밖에 없다. 나중에 기술 분리해주어야한다.
 
@@ -72,14 +73,15 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	@Auth
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String update(HttpSession session, Model model) {
-		// 접근 제어
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if (authUser == null) {
-			return "redirect:/";
-		}
-		
+	public String update(@AuthUser UserVo authUser, Model model) {			//update 는 authUser에서 no 받아와야함. @AuthUser하면 authUser 정보 받아오게 하기
+//		// 접근 제어																	//이런걸 argument resolve라고 한다.
+//		UserVo authUser = (UserVo) session.getAttribute("authUser");
+//		if (authUser == null) {
+//			return "redirect:/";
+//		}
+//		
 		Long no = authUser.getNo();
 		UserVo userVo = userService.getUser(no);
 		model.addAttribute("userVo", userVo);
