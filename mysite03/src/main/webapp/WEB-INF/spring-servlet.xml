@@ -11,17 +11,45 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
+
+
+
+	<!-- validator, conversionService, messageConverter, ArgumentResolver 를 
+		자동으로 등록 -->
+
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean
+				class="com.bitacademy.mysite.security.AuthUserHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+
+	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
+	<!-- 기본적으로 설정해야함. 정적 자원의 url을 default servlet으로 보내줌. -->
+	<mvc:default-servlet-handler />
+
 	<!-- Interceptors -->
 
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/assets/**"/>   <!-- 이미지 하나까지 확인하는 건 별로라서 확인하는 경로에서 제외 -->
+			<mvc:exclude-mapping path="/assets/**" />   <!-- 이미지 하나까지 확인하는 건 별로라서 확인하는 경로에서 제외 -->
+			<mvc:exclude-mapping path="/user/auth" />
+			<mvc:exclude-mapping path="/user/logout" />
 			<bean class="com.bitacademy.mysite.security.AuthInterceptor" />  <!-- bean설정하므로 사실상 container 안에 생김 -->
 		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/user/auth" />
+			<bean class="com.bitacademy.mysite.security.LoginInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/user/logout" />
+			<bean class="com.bitacademy.mysite.security.LogoutInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
-	
-	
+
 	<!-- ViewResolver 설정 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -31,17 +59,9 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="1" />
 	</bean>
-
-	<!-- validator, conversionService, messageConverter를 자동으로 등록 -->
-	<mvc:annotation-driven />
-
-	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
-	<!-- 기본적으로 설정해야함. 정적 자원의 url을 default servlet으로 보내줌. -->
-	<mvc:default-servlet-handler />
-
-
+	
+	
 	<context:annotation-config />
-
 	<!-- scanning 기능을 켜서 anotation 할 때, 어느 패키지를 살펴봐야 하는지 알려줌. -->
 	<context:component-scan
 		base-package="com.bitacademy.mysite.controller" />   <!-- 컨트롤러 위치를 의미, 복사해서 패키지 생성! -->
