@@ -36,7 +36,7 @@
 							<td>[${count - status.index }]</td>
 
 							<td style="text-align:left; padding-left:${vo.depth*20}px"><a
-								href="${pageContext.request.contextPath }/board?a=view&no=${vo.no}"><c:if
+								href="${pageContext.request.contextPath }/board/view?n=${vo.no}"><c:if
 										test="${vo.depth>1}">
 										<img
 											src="${pageContext.request.contextPath}/assets/images/reply.png"
@@ -47,7 +47,7 @@
 							<td>${vo.regDate }</td>
 							<c:if test="${authUser.no == vo.userNo }">
 								<td><a
-									href="${pageContext.request.contextPath }/board?a=delete&no=${vo.no}">삭제</a></td>
+									href="${pageContext.request.contextPath }/board/delete?n=${vo.no}">삭제</a></td>
 							</c:if>
 						</tr>
 						<tr>
@@ -72,7 +72,7 @@
 				<!-- pager 추가 -->
 
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board?a=writeform"
+					<a href="${pageContext.request.contextPath }/board/write"
 						id="new-book">글쓰기</a>
 				</div>
 			</div>

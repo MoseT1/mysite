@@ -34,9 +34,9 @@
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath}/board?a=list">글목록</a>
 					<c:if test="${authUser.no == boardVo.userNo }">
-						<a href="${pageContext.request.contextPath}/board?a=modifyform&no=${boardVo.no}">글수정</a>	<!-- 숫자를 그냥 넣어도 문자열로 전달? -->
+						<a href="${pageContext.request.contextPath}/board/modify?n=${boardVo.no}">글수정</a>	<!-- 숫자를 그냥 넣어도 문자열로 전달? -->
 					</c:if>
-					<a href="${pageContext.request.contextPath}/board?a=replyform&no=${boardVo.no}">답글 쓰기</a>
+					<a href="${pageContext.request.contextPath}/board/reply?n=${boardVo.no}">답글 쓰기</a>
 				</div>
 			</div>
 		</div>

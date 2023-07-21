@@ -12,6 +12,8 @@
 
 
 
+	<!-- auto proxy -->
+	<aop:aspectj-autoproxy />
 
 
 	<!-- validator, conversionService, messageConverter, ArgumentResolver 를 
@@ -59,8 +61,8 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="1" />
 	</bean>
-	
-	
+
+
 	<context:annotation-config />
 	<!-- scanning 기능을 켜서 anotation 할 때, 어느 패키지를 살펴봐야 하는지 알려줌. -->
 	<context:component-scan

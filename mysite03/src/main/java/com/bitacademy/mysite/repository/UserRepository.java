@@ -1,9 +1,5 @@
 package com.bitacademy.mysite.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +17,7 @@ import com.bitacademy.mysite.vo.UserVo;
 public class UserRepository {
 
 	@Autowired
-	private DataSource dataSource;
+	private DataSource dataSource;   //이거 없어도 될거같은데?
 	
 	@Autowired
 	private SqlSession sqlSession;

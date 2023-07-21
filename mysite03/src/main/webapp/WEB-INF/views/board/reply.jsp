@@ -14,8 +14,7 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.request.contextPath}/board">
-					<input type = "hidden" name = "a" value="reply">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath}/board/reply">
 					<input type = "hidden" name = "userNo" value="${authUser.no }">
 					<input type = "hidden" name = "gNo" value= "${boardVo.gNo }">
 					<input type = "hidden" name = "oNo" value= "${boardVo.oNo }">
