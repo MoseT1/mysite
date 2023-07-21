@@ -32,7 +32,15 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
+		
+		<!-- Spring Aspect-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${org.springframework-version}</version>  <!-- 위에 설정한 프로퍼티로
+			입력-->
+		</dependency>
+		
 		<!-- spring jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>

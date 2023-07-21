@@ -24,7 +24,9 @@ public class GuestbookRepository {
 	private SqlSession sqlSession;
 	
 	public List<GuestbookVo> findAll() throws GuestbookRepositoryException{
-
+		
+		
+		
 		List<GuestbookVo> result = sqlSession.selectList("guestbook.findAll");			// resultType을 설정해놨으므로 자동으로 리턴
 		return result;
 	}

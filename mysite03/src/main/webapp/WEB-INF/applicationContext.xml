@@ -12,6 +12,10 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
+
+	<!-- auto proxy -->
+	<aop:aspectj-autoproxy/>
+
 	<context:annotation-config />
 
 	<!-- Connection Pool DataSource -->
@@ -41,7 +45,7 @@
 
 
 	<context:component-scan
-		base-package="com.bitacademy.mysite.service, com.bitacademy.mysite.repository, com.bitacademy.mysite.exception">   <!-- base package -->
+		base-package="com.bitacademy.mysite.service, com.bitacademy.mysite.repository, com.bitacademy.mysite.exception, com.bitacademy.mysite.aop">   <!-- base package -->
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation"
