@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Error!!Error!! WARNING!!! </h1>
+	<pre> ${exception }</pre>
 </body>
 </html>
