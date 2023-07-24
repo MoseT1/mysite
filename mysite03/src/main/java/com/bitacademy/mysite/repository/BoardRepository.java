@@ -17,9 +17,6 @@ import com.bitacademy.mysite.vo.BoardVo;
 @Repository
 public class BoardRepository {
 	
-
-	@Autowired
-	private DataSource dataSource;
 	
 	@Autowired
 	private SqlSession sqlSession;

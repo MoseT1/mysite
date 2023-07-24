@@ -16,8 +16,7 @@ import com.bitacademy.mysite.vo.UserVo;
 @Repository
 public class UserRepository {
 
-	@Autowired
-	private DataSource dataSource;   //이거 없어도 될거같은데?
+
 	
 	@Autowired
 	private SqlSession sqlSession;

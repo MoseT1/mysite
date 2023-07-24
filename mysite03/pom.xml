@@ -32,7 +32,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<!-- Spring Aspect-->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -40,7 +40,7 @@
 			<version>${org.springframework-version}</version>  <!-- 위에 설정한 프로퍼티로
 			입력-->
 		</dependency>
-		
+
 		<!-- spring jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -61,6 +61,15 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+
+
+		<!-- 여기에 org.springframework.http.converter.json.MappingJackson2HttpMessageConverter  이게 있다 -->
+		<!-- jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.13.4.1</version>
 		</dependency>
 
 

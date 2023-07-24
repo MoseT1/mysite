@@ -17,8 +17,7 @@ import com.bitacademy.mysite.vo.GuestbookVo;
 @Repository
 public class GuestbookRepository {
 
-	@Autowired
-	private DataSource dataSource;
+
 	
 	@Autowired
 	private SqlSession sqlSession;
