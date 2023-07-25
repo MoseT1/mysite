@@ -26,15 +26,7 @@
 
 		<mvc:message-converters>
 		
-		<!-- message converter를 utf-8로 설정 -->
-			<bean
-				class="org.springframework.http.converter.StringHttpMessageConverter">
-				<property name="supportedMediaTypes">
-					<list>
-						<value>text/html; charset=UTF-8</value>
-					</list>
-				</property>
-			</bean>
+	
 		<!-- 객체 변환 -->
 			<bean
 				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -80,21 +72,5 @@
 			<bean class="com.bitacademy.mysite.security.LogoutInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-
-	<!-- ViewResolver 설정 -->
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />				<!-- setViewClass해서 설정 -->
-		<property name="prefix" value="/WEB-INF/views/" />							<!-- setPrefix해서 설정 -->
-		<property name="suffix" value=".jsp" />
-		<property name="order" value="1" />
-	</bean>
-
-
-	<context:annotation-config />
-	<!-- scanning 기능을 켜서 anotation 할 때, 어느 패키지를 살펴봐야 하는지 알려줌. -->
-	<context:component-scan
-		base-package="com.bitacademy.mysite.controller" />   <!-- 컨트롤러 위치를 의미, 복사해서 패키지 생성! -->
 
 </beans>

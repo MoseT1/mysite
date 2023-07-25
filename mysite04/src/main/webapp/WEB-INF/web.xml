@@ -42,6 +42,16 @@
 	<servlet> 							<!-- spring이더라도 servlet이 있어야하므로 추가한다. -->
 		<servlet-name>spring</servlet-name>				<!-- spring-servlet.xml파일의 spring이 여기거다. -->
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		
+		<!-- WebConfig로 초기화해라? -->
+		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+		</init-param>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>com.bitacademy.mysite.config.WebConfig</param-value>
+		</init-param>
 	</servlet>
 
 	<servlet-mapping>
