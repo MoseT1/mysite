@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="guestbook">
+
+	<select id="findAll" resultType="guestbookvo">  <!-- result매핑해준것. 객체 new해서 mybatis가 set해줌 -->
+		
+		<![CDATA[
+		select no, name, message, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate
+		from guestbook
+		order by reg_date desc
+		]]>					<!-- xml 문법 중 컨텐츠라고 지시해주는 것. 비교연산자가(<>)가 태그랑 같아서 이를 구분해주기 위해 사용 -->
+	</select>
+
+	<insert id="insert" parameterType="guestbookvo">  <!-- 맵핑은 xml의 맵핑문법을 따라주기. EL과 비슷하다. -->
+		<![CDATA[
+			insert into guestbook values(null, #{name }, #{password }, #{message }, curdate())
+		]]>
+	</insert>
+
+
+	<delete id="deleteByNoAndPassword" parameterType="map">		<!-- 소문자로 넘어온다. -->
+	
+		<![CDATA[
+			delete from guestbook where no=#{no} and password=#{password}
+		]]>
+	</delete>
+</mapper>

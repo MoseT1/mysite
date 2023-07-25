@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+
+	<insert id="insert" parameterType="boardvo">
+		<![CDATA[
+			insert into board values (null, #{title}, #{contents}, 0, now() , (select max(a.g_no) from board a)+1 , 1, 1, #{userNo})
+		]]>
+	</insert>
+
+	<select id="findByNo" parameterType="long" resultType="boardvo">
+		<![CDATA[
+			select no, title, contents, hit, reg_date as regDate, g_no as gNo, o_no as oNo
+			, depth, user_no as userNo from board where no=#{no}
+		]]>
+
+	</select>
+
+	<update id="updateTitleAndContentsByNO" parameterType="map">
+		<![CDATA[
+			update board set title=#{title}, contents=#{contents} where no=#{no}
+		]]>
+	</update>
+
+	<select id="findAll" resultType="boardvo">
+		<![CDATA[
+			select a.no, title, contents, hit, a.reg_date as regDate, g_no as gNo, o_no as oNo, depth, b.no as userNo, b.name as userName 
+			 from board a, user b where a.user_no = b.no order by g_no desc, o_no asc 
+		]]>
+	</select>
+
+	<insert id="insertToReply" parameterType="boardvo">
+		<![CDATA[
+			insert into board values (null, #{title}, #{contents}, 0, now() , #{gNo}, #{oNo}+1, #{depth}+1, #{userNo})
+		]]>
+	</insert>
+
+	<update id="updateToReply" parameterType="boardvo">
+		<![CDATA[
+		UPDATE board AS b1
+		INNER JOIN (SELECT g_no, MAX(no) AS max_no FROM board WHERE g_no = #{gNo} AND o_no >=#{oNo})
+		 AS b2 ON b1.g_no = b2.g_no AND b1.no < b2.max_no
+		 SET b1.o_no = b1.o_no + 1
+		]]>
+	</update>
+
+	<delete id="deleteByNo" parameterType="long">
+		<![CDATA[
+			delete from board where no = #{no}
+		]]>
+	</delete>
+</mapper>
