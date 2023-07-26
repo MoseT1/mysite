@@ -1,0 +1,72 @@
+#spring configuration
+spring:
+   application:
+      name: mysite
+   
+   #devtools - Live Reload
+   devtools:
+      livereload:
+         enabled: true
+   # mvc
+   mvc:
+      # 정적자원이 /assets/로 오면 아래의 classpath의 assets으로 찾겠다.
+      static-path-pattern: /assets/**
+      #page 없을 때 exception 발생 시켜달라는 설정. 근데 지금은 자동으로 404로 해주긴함.
+      throw-exception-if-no-handler-found: true
+      view:
+         prefix: /WEB-INF/views/
+         suffix: .jsp
+
+   #assets 연결
+   web:
+      resources:
+         #정적자원의 위치 지정
+         static-locations: classpath:/assets/
+         
+   # aop 
+   aop:
+      auto: true
+      proxy-target-class: true
+
+   # datasource
+   datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      url: jdbc:mariadb://192.168.100.46:3306/webdb?charset=utf8
+      username: webdb
+      password: webdb
+      hikari:
+         minimum-idle: 10
+         maximum-pool: 20          
+
+# mybatis 
+mybatis:
+   config-location: classpath:mybatis/configuration.xml
+
+
+# server
+server:
+   port: 8080
+   servlet:
+      context-path: /mysite05
+      encoding:
+         charset: utf-8
+         enabled: true
+         
+         
+# logging
+logging:
+   pattern:
+      file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   logback:
+      rollingpolicy:
+         file-name-pattern: /${spring.application.name}-logs/exception.%i.log.zip
+         max-file-size: 200MB
+         max-history: 10
+   file: /${spring.application.name}-logs/exception.log
+   level:
+      root: INFO
+      com:
+         bitacademy:
+            mysite:
+               exception: ERROR

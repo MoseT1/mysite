@@ -14,8 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class MyBatisConfig {
 	
 	
-	
-	//applicationcontext 달라고 할 수 있음
+	// applicationContext 달라고할수 있음. 
 	@Bean
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ApplicationContext applicationContext) throws Exception{
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
@@ -29,4 +28,4 @@ public class MyBatisConfig {
 	public SqlSession sqlSession(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
-}
+}	

@@ -1,9 +1,9 @@
-package com.bitacademy.mysite.config.web;
+package com.bitacademy.mysite.config;
 
 import java.util.List;
 
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -14,8 +14,8 @@ import com.bitacademy.mysite.security.AuthUserHandlerMethodArgumentResolver;
 import com.bitacademy.mysite.security.LoginInterceptor;
 import com.bitacademy.mysite.security.LogoutInterceptor;
 
-@Configuration
-public class SecurityConfig implements WebMvcConfigurer {
+@SpringBootConfiguration
+public class WebConfig implements WebMvcConfigurer {
 	
 	
 	//Argument Resolver
